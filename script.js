@@ -36,10 +36,10 @@ const syncThemeToggle = (theme) => {
 
   const isDark = theme === "dark";
   themeToggle.setAttribute("aria-pressed", String(isDark));
-  themeToggle.title = isDark ? "Dark mode" : "Light mode";
+  themeToggle.title = isDark ? "濃色名片" : "淡色名片";
   themeToggle.setAttribute(
     "aria-label",
-    isDark ? "Switch to light mode" : "Switch to dark mode"
+    isDark ? "切換爲淡色名片" : "切換爲濃色名片"
   );
 };
 
@@ -117,16 +117,16 @@ copyButtons.forEach((button) => {
         throw new Error("copy failed");
       }
 
-      button.textContent = "Copied";
+      button.textContent = "已複製";
       button.classList.add("is-copied");
-      showToast("연락처를 복사했습니다.");
+      showToast("聯絡方式已複製。");
     } catch {
-      button.textContent = "Failed";
-      showToast("복사에 실패했습니다.");
+      button.textContent = "失敗";
+      showToast("複製失敗。");
     }
 
     window.setTimeout(() => {
-      button.textContent = previousLabel ?? "Copy";
+      button.textContent = previousLabel ?? "複製";
       button.classList.remove("is-copied");
     }, 1400);
   });
@@ -352,20 +352,20 @@ const getAmbientPalette = () =>
   activeTheme === "light"
     ? {
         fills: [
-          "rgba(47, 99, 211, 0.38)",
-          "rgba(95, 141, 22, 0.34)",
-          "rgba(220, 116, 68, 0.3)",
+          "rgba(186, 51, 34, 0.36)",
+          "rgba(155, 111, 56, 0.3)",
+          "rgba(210, 154, 109, 0.28)",
         ],
-        link: [47, 99, 211],
+        link: [186, 51, 34],
         linkAlpha: 0.085,
       }
     : {
         fills: [
-          "rgba(130, 169, 255, 0.62)",
-          "rgba(185, 255, 103, 0.56)",
-          "rgba(255, 142, 99, 0.46)",
+          "rgba(215, 68, 46, 0.56)",
+          "rgba(200, 155, 85, 0.48)",
+          "rgba(248, 221, 188, 0.34)",
         ],
-        link: [130, 169, 255],
+        link: [200, 155, 85],
         linkAlpha: 0.06,
       };
 
