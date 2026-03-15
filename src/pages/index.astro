@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import legacyHtml from "../../index.html?raw";
+
+const bodyMatch = legacyHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+const pageHtml = bodyMatch?.[1]
+  ?.replace(/<script\b[^>]*src=["'][^"']*script\.js[^"']*["'][\s\S]*?<\/script>/i, "")
+  ?.trim() ?? "";
+---
+
+<BaseLayout
+  title="박철훈 | Digital Business Card"
+  description="LLM과 Big Data를 활용한 공동주택 안전·노후화·재난취약성의 계량 분석 및 부동산·주택정책 연구"
+>
+  <Fragment set:html={pageHtml} />
+
+  <script>
+    import "../../script.js";
+  </script>
+</BaseLayout>
