@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>朴鐵勳 名片</title>
+  <meta name="description" content="點擊卡片任意處, 即可打開 digital-business-card-iota-ten.vercel.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #120505;
+      --panel: rgba(43, 11, 11, 0.94);
+      --panel-strong: rgba(87, 18, 18, 0.98);
+      --line: rgba(255, 232, 214, 0.16);
+      --text: #fbf2e7;
+      --muted: rgba(251, 242, 231, 0.72);
+      --accent: #d7442e;
+      --gold: #c89b55;
+      --gold-soft: #f0d3b2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(215, 68, 46, 0.18), transparent 24%),
+        radial-gradient(circle at 84% 14%, rgba(200, 155, 85, 0.14), transparent 22%),
+        radial-gradient(circle at 78% 84%, rgba(124, 17, 17, 0.16), transparent 28%),
+        conic-gradient(from 210deg at 50% 50%, #100303 0deg, #250909 118deg, #120404 236deg, #100303 360deg);
+      font-family: "Noto Sans SC", "Noto Sans KR", sans-serif;
+      color: var(--text);
+    }
+
+    .frame {
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .card-link {
+      display: block;
+      width: min(100%, 460px);
+      text-decoration: none;
+      color: inherit;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at 50% 5%, rgba(200, 155, 85, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 30%, rgba(215, 68, 46, 0.18), transparent 36%),
+        linear-gradient(180deg, #2f0d0d 0%, #160404 100%);
+      box-shadow:
+        0 34px 76px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        border-color 0.24s ease;
+    }
+
+    .card-link:hover,
+    .card-link:focus-visible {
+      transform: translateY(-6px);
+      border-color: rgba(248, 221, 188, 0.2);
+      box-shadow:
+        0 42px 92px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      outline: none;
+    }
+
+    .han-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px;
+      min-height: 560px;
+      padding: 28px 28px 26px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(87, 18, 18, 0.98), rgba(57, 11, 11, 0.98)),
+        linear-gradient(135deg, rgba(255, 245, 232, 0.06), transparent 34%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 244, 232, 0.16),
+        inset 0 -28px 60px rgba(0, 0, 0, 0.22);
+    }
+
+    .han-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(248, 221, 188, 0.16);
+      pointer-events: none;
+    }
+
+    .han-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .han-card-script {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.18em;
+    }
+
+    .han-card-seal {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(248, 221, 188, 0.24);
+      background: linear-gradient(135deg, rgba(248, 221, 188, 0.14), rgba(248, 221, 188, 0.04));
+      color: #f7d7b3;
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.52rem;
+      font-weight: 700;
+    }
+
+    .han-card-main {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
+    .han-card-title,
+    .han-card-meta,
+    .qr-caption,
+    .qr-url {
+      margin: 0;
+    }
+
+    .han-card-title {
+      color: rgba(251, 242, 231, 0.78);
+      font-size: 0.96rem;
+      letter-spacing: 0.16em;
+    }
+
+    .han-card-name {
+      margin: 0;
+      color: #fff4e8;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(3.2rem, 6vw, 4.6rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: 0.22em;
+    }
+
+    .han-card-english {
+      margin: 0;
+      color: rgba(251, 242, 231, 0.58);
+      font-size: 0.92rem;
+      letter-spacing: 0.26em;
+    }
+
+    .han-card-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(248, 221, 188, 0), rgba(248, 221, 188, 0.72), rgba(248, 221, 188, 0));
+    }
+
+    .han-card-meta {
+      color: rgba(251, 242, 231, 0.82);
+      font-size: 1rem;
+      line-height: 1.78;
+    }
+
+    .qr-panel {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      padding-top: 8px;
+    }
+
+    .han-card-qr {
+      width: 176px;
+      height: 176px;
+      border-radius: 16px;
+      border: 10px solid rgba(255, 247, 237, 0.96);
+      background: #fff;
+      box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.24),
+        0 0 0 1px rgba(248, 221, 188, 0.18);
+    }
+
+    .qr-caption {
+      color: #f7d7b3;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+    }
+
+    .qr-url {
+      color: rgba(251, 242, 231, 0.52);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+
+    .note {
+      margin: 0;
+      color: rgba(251, 242, 231, 0.72);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 18px;
+      }
+
+      .han-card {
+        min-height: 420px;
+        padding: 20px 18px 18px;
+        gap: 16px;
+      }
+
+      .han-card-script {
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+      }
+
+      .han-card-seal {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        font-size: 1.34rem;
+      }
+
+      .han-card-title {
+        font-size: 0.82rem;
+      }
+
+      .han-card-name {
+        font-size: clamp(2.44rem, 12vw, 3.36rem);
+      }
+
+      .han-card-english {
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+      }
+
+      .han-card-meta {
+        font-size: 0.86rem;
+        line-height: 1.56;
+      }
+
+      .han-card-qr {
+        width: 136px;
+        height: 136px;
+        border-width: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <a
+      class="card-link"
+      href="https://digital-business-card-iota-ten.vercel.app/"
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="Open digital business card website"
+    >
+      <section class="han-card">
+        <div class="han-card-header">
+          <p class="han-card-script">首爾 / 都市大數據 / 名片</p>
+          <span class="han-card-seal">朴</span>
+        </div>
+
+        <div class="han-card-main">
+          <p class="han-card-title">城市大數據 · 住宅政策</p>
+          <h1 class="han-card-name">朴 鐵 勳</h1>
+          <p class="han-card-english">PARK CHEOL HOON</p>
+          <div class="han-card-divider"></div>
+          <p class="han-card-meta">首爾市立大學 都市大數據融合學科 博士課程</p>
+          <p class="han-card-meta">LLM·大數據 기반 共同住宅 安全·老朽化·災害脆弱性 計量分析</p>
+        </div>
+
+        <div class="qr-panel">
+          <img class="han-card-qr" src="vercel-qr.png" alt="Digital Business Card QR Code" loading="lazy" decoding="async">
+          <p class="qr-caption">掃碼閱覽名片</p>
+          <p class="qr-url">digital-business-card-iota-ten.vercel.app</p>
+        </div>
+      </section>
+    </a>
+    <p class="note">此 HTML 文件中, 點擊卡片任意處即可開啓網站。</p>
+  </div>
+</body>
+</html>
